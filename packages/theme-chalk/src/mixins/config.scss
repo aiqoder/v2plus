@@ -1,0 +1,11 @@
+// ==========================================
+// BEM 命名空间配置
+// ==========================================
+
+// 命名空间前缀（全局 CSS 类前缀）
+$namespace: 'v2-' !default;
+
+// 分隔符
+$common-separator: '-' !default;    // 元素分隔: .v2-table__header
+$modifier-separator: '--' !default; // 修饰符分隔: .v2-table--border
+$state-prefix: 'is-' !default;      // 状态前缀: .is-disabled

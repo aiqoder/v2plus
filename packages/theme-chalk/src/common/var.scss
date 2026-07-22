@@ -1,0 +1,52 @@
+// ========== 颜色 ==========
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+$color-primary: #409eff !default;
+$color-success: #67c23a !default;
+$color-warning: #e6a23c !default;
+$color-danger: #f56c6c !default;
+$color-info: #909399 !default;
+
+// ========== 文字 ==========
+$text-primary: #303133 !default;
+$text-regular: #606266 !default;
+$text-secondary: #909399 !default;
+$text-placeholder: #c0c4cc !default;
+
+// ========== 边框 ==========
+$border-color: #ebeef5 !default;
+$border-color-lighter: #ebeef5 !default;
+$border-color-light: #e4e7ed !default;
+$border-color-base: #dcdfe6 !default;
+$border-width-base: 1px !default;
+$border-radius-base: 4px !default;
+
+// ========== 背景 ==========
+$background-color-base: #f5f7fa !default;
+
+// ========== Table 特定变量 ==========
+$table-border-color: $border-color-lighter !default;
+$table-border: 1px solid $table-border-color !default;
+$table-text-color: $text-regular !default;
+$table-header-bg-color: $color-white !default;
+$table-header-text-color: $text-primary !default;
+$table-header-font-weight: 500 !default;
+$table-row-hover-bg-color: #f5f7fa !default;
+$table-current-row-bg-color: #ecf5ff !default;
+$table-stripe-bg-color: #fafafa !default;
+$table-expand-bg-color: #f5f7fa !default;
+$table-fixed-shadow-left: 6px 0 6px -4px rgba(0, 0, 0, 0.08) !default;
+$table-fixed-shadow-right: -6px 0 6px -4px rgba(0, 0, 0, 0.08) !default;
+
+// ========== 尺寸 ==========
+$table-cell-padding: 12px 0 !default;
+$table-cell-padding-large: 16px 0 !default;
+$table-cell-padding-small: 8px 0 !default;
+$table-header-cell-padding: 12px 0 !default;
+$table-header-cell-padding-large: 16px 0 !default;
+$table-header-cell-padding-small: 8px 0 !default;
+
+// ========== 字体大小 ==========
+$font-size-base: 14px !default;
+$font-size-large: 16px !default;
+$font-size-small: 12px !default;

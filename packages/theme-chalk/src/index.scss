@@ -1,0 +1,15 @@
+// ==========================================
+// V2Plus Theme Chalk — 样式入口
+// 全量引入所有组件样式
+// ==========================================
+
+// 设计令牌（CSS 变量、Sass 变量）
+@import './common/var';
+
+// Mixins
+@import './mixins/config';
+@import './mixins/mixins';
+@import './mixins/function';
+
+// 组件样式 — 添加新组件时在此注册
+@import './table';
