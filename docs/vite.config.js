@@ -4,6 +4,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   root: __dirname,
+  base: process.env.VITE_BASE || '/',
   plugins: [createVuePlugin()],
   resolve: {
     alias: {
@@ -25,6 +26,6 @@ export default defineConfig({
   },
   server: {
     port: 3001,
-    open: true,
+    // open: true,
   },
 })
