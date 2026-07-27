@@ -57,6 +57,8 @@ export default {
           title: '组件',
           items: [
             { text: 'Table 表格', link: '/table' },
+            { text: 'TreeSelect 树形选择器', link: '/tree-select' },
+            { text: 'Dialog 弹窗', link: '/dialog' },
           ],
         },
       ],

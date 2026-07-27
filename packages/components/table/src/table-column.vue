@@ -60,6 +60,11 @@ export default {
     filterMultiple: { type: Boolean, default: true },
     filterMethod: { type: Function },
     filteredValue: { type: Array },
+
+    // ===== 表单编辑 =====
+    editor: { type: [String, Object, Function], default: '' },
+    editorProps: { type: Object, default: () => ({}) },
+    rules: { type: Array, default: () => [] },
   },
 
   data() {
@@ -70,6 +75,7 @@ export default {
       _renderFilterIcon: null,
       _renderExpand: null,
       _renderFilterCell: null,
+      _renderEdit: null,
     }
   },
 
@@ -121,6 +127,11 @@ export default {
         renderFilterIcon: this._renderFilterIcon,
         renderExpand: this._renderExpand,
         renderFilterCell: this._renderFilterCell,
+        renderEdit: this._renderEdit,
+        // 表单编辑
+        editor: this.editor,
+        editorProps: this.editorProps,
+        rules: this.rules,
       }
     },
   },
@@ -156,6 +167,12 @@ export default {
       (slot) => { this._renderFilterCell = slot || null },
       { immediate: true }
     )
+
+    this.$watch(
+      () => this.$scopedSlots.edit,
+      (slot) => { this._renderEdit = slot || null },
+      { immediate: true }
+    )
   },
 
   mounted() {
@@ -187,6 +204,7 @@ export default {
       this._renderFilterIcon = this.$scopedSlots['filter-icon'] || null
       this._renderExpand = this.$scopedSlots.expand || null
       this._renderFilterCell = this.$scopedSlots['filter-cell'] || null
+      this._renderEdit = this.$scopedSlots.edit || null
     },
   },
 

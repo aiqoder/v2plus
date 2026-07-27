@@ -1,0 +1,254 @@
+// ==========================================
+// V2TreeSelect 样式 — 兼容 Element Plus 风格
+// ==========================================
+
+.v2-tree-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: $font-size-base;
+  box-sizing: border-box;
+  vertical-align: middle;
+
+  // ---------- 触发器外壳 ----------
+  &__reference {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid $border-color-base;
+    border-radius: $border-radius-base;
+    background-color: $color-white;
+    color: $text-regular;
+    cursor: pointer;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    overflow: hidden;
+
+    &:hover {
+      border-color: $text-placeholder;
+    }
+  }
+
+  // 聚焦 / 下拉展开态
+  &.is-focus &__reference,
+  &.is-visible &__reference {
+    border-color: $color-primary;
+  }
+
+  // 禁用态
+  &.is-disabled &__reference {
+    background-color: $background-color-base;
+    border-color: $border-color-light;
+    color: $text-placeholder;
+    cursor: not-allowed;
+  }
+
+  // ---------- 前缀 ----------
+  &__prefix {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 10px;
+    color: $text-secondary;
+  }
+
+  // ---------- 输入区 ----------
+  &__control {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 0;
+    padding-left: 12px;
+    box-sizing: border-box;
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 1px;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    color: $text-regular;
+    background: transparent;
+    font-size: inherit;
+    line-height: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &::placeholder {
+      color: $text-placeholder;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------- 后缀（清除 + 箭头） ----------
+  &__suffix {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-placeholder;
+    pointer-events: none;
+  }
+
+  &__caret {
+    transition: transform 0.3s;
+    font-size: 14px;
+    line-height: 1;
+
+    &.is-reverse {
+      transform: rotateZ(180deg);
+    }
+  }
+
+  &__clear {
+    font-size: 14px;
+    line-height: 1;
+    color: $text-placeholder;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $text-secondary;
+    }
+  }
+
+  // ---------- 多选 tag ----------
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 0;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    height: 24px;
+    padding: 0 8px;
+    background-color: $background-color-base;
+    border: 1px solid $border-color-light;
+    border-radius: $border-radius-base;
+    color: $text-primary;
+    font-size: $font-size-small;
+    line-height: 22px;
+    box-sizing: border-box;
+  }
+
+  &__tag-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 160px;
+  }
+
+  &__tag-close {
+    margin-left: 4px;
+    font-size: 12px;
+    color: $text-secondary;
+    cursor: pointer;
+    border-radius: 50%;
+
+    &::before {
+      display: block;
+      transform: scale(0.8);
+    }
+
+    &:hover {
+      background-color: $text-secondary;
+      color: $color-white;
+    }
+  }
+
+  &__count {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 8px;
+    background-color: $background-color-base;
+    border: 1px solid $border-color-light;
+    border-radius: $border-radius-base;
+    color: $text-primary;
+    font-size: $font-size-small;
+    cursor: default;
+    flex-shrink: 0;
+  }
+
+  // ---------- 下拉面板（popper append-to-body，需全局样式） ----------
+  &__dropdown {
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-width: 100%;
+    padding: 8px;
+  }
+
+  &__empty,
+  &__loading {
+    padding: 16px 0;
+    text-align: center;
+    color: $text-placeholder;
+    font-size: $font-size-base;
+  }
+
+  &__tags-tooltip {
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
+  // 尺寸变体
+  &--large {
+    font-size: $font-size-large;
+
+    .v2-tree-select__reference {
+      height: 40px;
+    }
+    .v2-tree-select__tag,
+    .v2-tree-select__count {
+      height: 28px;
+      line-height: 26px;
+    }
+  }
+
+  &--default {
+    .v2-tree-select__reference {
+      height: 32px;
+    }
+  }
+
+  &--small {
+    font-size: $font-size-small;
+
+    .v2-tree-select__reference {
+      height: 24px;
+    }
+    .v2-tree-select__tag,
+    .v2-tree-select__count {
+      height: 20px;
+      line-height: 18px;
+      font-size: 12px;
+    }
+    .v2-tree-select__control {
+      padding-left: 8px;
+    }
+  }
+}
+
+// 下拉 popper 容器样式（element-ui popover 会附加 popper-class）
+.v2-tree-select__popper.el-popover {
+  padding: 0 !important;
+  min-width: 100px;
+}

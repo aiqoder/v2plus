@@ -32,7 +32,7 @@
             </label>
             <!-- 自定义表头渲染 -->
             <template v-else-if="col.renderHeaderCell">
-              <component :is="renderHeaderCellWrapper(col)" />
+              <header-cell-renderer :render-fn="col.renderHeaderCell" :scope-data="headerCellScope(col)" />
             </template>
             <!-- 默认表头 -->
             <span v-else class="v2-table__header-label">{{ col.label }}</span>
@@ -77,8 +77,27 @@
 </template>
 
 <script>
+// 用于渲染表头插槽 VNodes 的 functional 组件（与 table-body CellRenderer 一致）
+const HeaderCellRenderer = {
+  functional: true,
+  props: {
+    renderFn: { type: Function },
+    scopeData: { type: Object },
+  },
+  render(h, ctx) {
+    const { renderFn, scopeData } = ctx.props
+    if (!renderFn) return null
+    const result = renderFn(scopeData)
+    return Array.isArray(result) ? result : [result]
+  },
+}
+
 export default {
   name: 'V2TableHeader',
+
+  components: {
+    HeaderCellRenderer,
+  },
 
   inject: ['tableStore'],
 
@@ -262,11 +281,9 @@ export default {
       document.addEventListener('mouseup', onMouseUp)
     },
 
-    renderHeaderCellWrapper(col) {
-      const renderFn = col.renderHeaderCell
-      const scope = { column: col, $index: this.columns.indexOf(col) }
-      const result = renderFn(scope)
-      return result
+    /** 自定义表头插槽的 scope 数据 */
+    headerCellScope(col) {
+      return { column: col, $index: this.columns.indexOf(col) }
     },
   },
 }

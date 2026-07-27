@@ -77,10 +77,9 @@
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-  // 确保 header 表格宽度由内容决定
-  .v2-table__header {
-    min-width: 100%;
-  }
+  // 注意：这里不能给 .v2-table__header 设 min-width:100%。header 与 body 是两个独立
+  // <table>，宽度必须一致才能逐列对齐。当所有列均为固定 width 且总和 < 容器宽时（fit 不
+  // 拉伸带 width 的列），min-width:100% 会把表头撑到容器宽度，而表体保持列宽和，导致错位。
 }
 
 // ---------- 表体包裹 ----------
@@ -91,6 +90,8 @@
   // 始终允许横向滚动，由实际内容宽度决定是否出现滚动条
   overflow-x: auto;
   overflow-y: auto;
+  // 禁用滚动锚定：虚拟滚动时内容频繁变更，浏览器自动锚定会导致 scrollTop 归零
+  overflow-anchor: none;
 }
 
 // 拖拽调整列宽期间，隐藏表体横向滚动条闪烁
@@ -564,6 +565,55 @@
     left: 50%;
     margin-left: -6px;
     border-bottom-color: inherit;
+  }
+}
+
+// ---------- 表单编辑 ----------
+.v2-table__form-toolbar {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-bottom: 1px solid $border-color-lighter;
+  margin-bottom: -1px;
+}
+
+.v2-table__cell-inner.is-form-error {
+  .el-input__inner,
+  .el-input-number__input,
+  .el-select .el-input__inner,
+  .el-date-editor .el-input__inner {
+    border-color: #f56c6c;
+  }
+}
+
+.v2-table__form-error-msg {
+  color: #f56c6c;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 2px;
+  padding: 0 8px;
+}
+
+// 编辑态行高亮
+.v2-table__row.is-editing {
+  background-color: #f5f7fa;
+}
+
+// ---------- 虚拟滚动 ----------
+.v2-table__virtual-container {
+  // 固定高度容器：隔离 table 内部 DOM 变更对父级 scrollHeight 的影响
+  // 防止 Vue 补丁时 scrollTop 被浏览器钳制归零
+  overflow: hidden;
+}
+
+.v2-table__virtual-spacer {
+  td {
+    padding: 0 !important;
+    border: none !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
   }
 }
 

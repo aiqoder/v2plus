@@ -18,6 +18,11 @@ function ensureTooltipEl() {
   if (tooltipEl) return
   tooltipEl = document.createElement('div')
   tooltipEl.className = 'v2-table__overflow-tooltip v2-table__overflow-tooltip--dark'
+  // 文本内容节点（放在箭头之前，firstChild 为文本元素）
+  const contentEl = document.createElement('span')
+  contentEl.className = 'v2-table__overflow-tooltip-content'
+  tooltipEl.appendChild(contentEl)
+  // 箭头
   arrowEl = document.createElement('div')
   arrowEl.className = 'v2-table__overflow-tooltip-arrow'
   tooltipEl.appendChild(arrowEl)
@@ -78,6 +83,7 @@ export function showTooltip(cellEl, col, row, options = {}) {
 
   // 更新主题
   tooltipEl.className = `v2-table__overflow-tooltip v2-table__overflow-tooltip--${effect} is-visible`
+  // 文本内容设置在 content span 上（firstChild），而非 arrow div
   tooltipEl.firstChild.textContent = content
 
   // 设置 placement

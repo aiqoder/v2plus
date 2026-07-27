@@ -1,0 +1,87 @@
+// ==========================================
+// V2Dialog 样式 — 兼容 Element Plus 风格
+// ==========================================
+
+// 非 scoped：el-dialog 挂载时可能脱离组件树，通过 .v2-dialog 类名隔离
+
+.v2-dialog.el-dialog {
+  // 覆盖 el-dialog 默认 position:relative + margin 流
+  // 首帧用 fixed + translateX(-50%) + top:15vh 兜底，避免闪烁
+  // 打开后 JS 精确计算 left/top 覆盖
+  position: fixed;
+  margin: 0 !important;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 15vh;
+  display: flex;
+  flex-direction: column;
+
+  .el-dialog__header {
+    user-select: none;
+    cursor: move;
+  }
+
+  .el-dialog__body {
+    flex: 1;
+    overflow: auto;
+  }
+}
+
+// ========== 缩放手柄 ==========
+
+.v2-dialog .v2-dialog__rz {
+  position: absolute;
+  z-index: 5;
+  background: transparent;
+}
+
+// 左右
+.v2-dialog .v2-dialog__rz--l,
+.v2-dialog .v2-dialog__rz--r {
+  top: 0;
+  width: 6px;
+  height: 100%;
+}
+.v2-dialog .v2-dialog__rz--l { left: -3px; }
+.v2-dialog .v2-dialog__rz--r { right: -3px; }
+
+// 上下
+.v2-dialog .v2-dialog__rz--t,
+.v2-dialog .v2-dialog__rz--b {
+  left: 0;
+  height: 6px;
+  width: 100%;
+}
+.v2-dialog .v2-dialog__rz--t { top: -3px; }
+.v2-dialog .v2-dialog__rz--b { bottom: -3px; }
+
+// 四角（放大命中区域）
+.v2-dialog .v2-dialog__rz--tl,
+.v2-dialog .v2-dialog__rz--tr,
+.v2-dialog .v2-dialog__rz--bl,
+.v2-dialog .v2-dialog__rz--br {
+  width: 12px;
+  height: 12px;
+  z-index: 6;
+}
+.v2-dialog .v2-dialog__rz--tl { top: -3px; left: -3px; }
+.v2-dialog .v2-dialog__rz--tr { top: -3px; right: -3px; }
+.v2-dialog .v2-dialog__rz--bl { bottom: -3px; left: -3px; }
+.v2-dialog .v2-dialog__rz--br { bottom: -3px; right: -3px; }
+
+// ========== 全屏按钮 ==========
+
+.v2-dialog .v2-dialog__fullscreen.el-dialog__headerbtn {
+  right: 50px; // 给关闭按钮留空间
+}
+
+.v2-dialog .v2-dialog__fullscreen .el-icon-full-screen,
+.v2-dialog .v2-dialog__fullscreen .el-icon-crop {
+  font-size: 16px;
+  color: #909399;
+}
+
+.v2-dialog .v2-dialog__fullscreen:hover .el-icon-full-screen,
+.v2-dialog .v2-dialog__fullscreen:hover .el-icon-crop {
+  color: #409EFF;
+}

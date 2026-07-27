@@ -66,6 +66,16 @@
     <p>通过自定义列模板插槽，结合 <code>__editing</code> 标记实现行内编辑。点击"编辑"进入编辑模式，保存/取消切换回展示模式，支持新增行和批量保存。</p>
     <code-preview :source="inlineEditSource" :demo="InlineEditTable" />
 
+    <!-- ==================== 虚拟滚动 ==================== -->
+    <h2 id="virtual-scroll">虚拟滚动</h2>
+    <p>设置 <code>virtual-scroll</code> 启用虚拟滚动，仅渲染可视区域内的行，支持动态行高。通过 <code>estimated-row-height</code> 设置估算行高，<code>overscan-count</code> 控制缓冲区行数。适合处理 10000+ 行的大数据量场景。</p>
+    <code-preview :source="virtualScrollSource" :demo="VirtualScrollTable" />
+
+    <!-- ==================== 表单编辑 ==================== -->
+    <h2 id="form-table">表单编辑</h2>
+    <p>设置 <code>form</code> prop 启用表单编辑模式，支持 <code>batch</code>（批量编辑）、<code>always</code>（始终编辑）、<code>row</code>（行切换）三种模式。在列上声明 <code>editor</code> 和 <code>:rules</code> 即可自动渲染 Element 组件和校验。</p>
+    <code-preview :source="formTableSource" :demo="FormTable" />
+
     <!-- ==================== Table API ==================== -->
     <h2 id="table-api">Table API</h2>
 
@@ -125,6 +135,12 @@ import spanSource from './demos/SpanTable.vue?raw'
 import InlineEditTable from './demos/InlineEditTable.vue'
 import inlineEditSource from './demos/InlineEditTable.vue?raw'
 
+import VirtualScrollTable from './demos/VirtualScrollTable.vue'
+import virtualScrollSource from './demos/VirtualScrollTable.vue?raw'
+
+import FormTable from './demos/FormTable.vue'
+import formTableSource from './demos/FormTable.vue?raw'
+
 export default {
   components: { CodePreview, ApiTable },
   data() {
@@ -143,6 +159,8 @@ export default {
       customColSource,
       spanSource,
       inlineEditSource,
+      virtualScrollSource,
+      formTableSource,
 
       // 组件
       BasicTable,
@@ -158,6 +176,8 @@ export default {
       CustomColumnTable,
       SpanTable,
       InlineEditTable,
+      VirtualScrollTable,
+      FormTable,
 
       // ==================== API 文档 ====================
       propHeaders: ['名称', '说明', '类型', '默认值'],
@@ -208,6 +228,9 @@ export default {
         { '名称': 'table-layout', '说明': '表格布局算法', '类型': 'String', '默认值': '"fixed"' },
         { '名称': 'scrollbar-always-on', '说明': '是否始终显示滚动条', '类型': 'Boolean', '默认值': 'false' },
         { '名称': 'flexible', '说明': '主轴最小宽度不跟随内容', '类型': 'Boolean', '默认值': 'false' },
+        { '名称': 'virtual-scroll', '说明': '是否启用虚拟滚动（需配合 height 或 max-height 使用）', '类型': 'Boolean', '默认值': 'false' },
+        { '名称': 'estimated-row-height', '说明': '虚拟滚动模式下的估算行高（px），用于初始位置计算', '类型': 'Number', '默认值': '48' },
+        { '名称': 'overscan-count', '说明': '虚拟滚动模式下可见区域外预渲染的行数', '类型': 'Number', '默认值': '5' },
       ],
 
       tableEvents: [

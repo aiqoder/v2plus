@@ -3,7 +3,7 @@
  * 兼容 Element Plus API，支持按需引入
  */
 import { version } from './version'
-import { V2Table, V2TableColumn } from '../components'
+import { V2Table, V2TableColumn, V2TreeSelect, V2Dialog } from '../components'
 
 // 全量样式（构建时提取为 v2plus.css）
 import '../theme-chalk/src/index.scss'
@@ -12,6 +12,8 @@ import '../theme-chalk/src/index.scss'
 const components = [
   V2Table,
   V2TableColumn,
+  V2TreeSelect,
+  V2Dialog,
 ]
 
 // 批量注册所有组件
@@ -31,6 +33,8 @@ export {
   install,
   V2Table,
   V2TableColumn,
+  V2TreeSelect,
+  V2Dialog,
 }
 
 export default {
@@ -38,4 +42,6 @@ export default {
   install,
   V2Table,
   V2TableColumn,
+  V2TreeSelect,
+  V2Dialog,
 }
