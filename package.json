@@ -53,6 +53,14 @@
   ],
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aiqoder/v2plus.git"
+  },
+  "homepage": "https://aiqoder.github.io/v2plus/",
+  "bugs": {
+    "url": "https://github.com/aiqoder/v2plus/issues"
+  },
   "dependencies": {
     "prismjs": "^1.30.0"
   }
